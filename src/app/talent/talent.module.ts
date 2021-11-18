@@ -1,15 +1,16 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TalentListComponent } from './talent-list/talent-list.component';
+import { NgModule } from '@angular/core';
 
 
 
 @NgModule({
-  declarations: [
-    TalentListComponent
-  ],
-  imports: [
-    CommonModule
-  ]
+    declarations: [
+
+    ],
+    imports: [
+        CommonModule,
+    ],
+    providers: [
+    ]
 })
 export class TalentModule { }
