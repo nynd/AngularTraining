@@ -1,7 +1,7 @@
 export interface RandomUserAPI {
-    results: Result[];
+    results: Talent[];
 }
-export interface Result {
+export interface Talent {
     gender: Gender;
     name: Name;
     email: string;

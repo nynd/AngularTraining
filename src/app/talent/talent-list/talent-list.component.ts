@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RandomUserAPI } from '../models/random-user-api.model';
+import { RandomUserAPI, Talent } from '../models/random-user-api.model';
 import { RandomUserHttpService } from '../random-user-http.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { RandomUserHttpService } from '../random-user-http.service';
 })
 export class TalentListComponent implements OnInit {
 
-    public list?: RandomUserAPI;
+    public list?: Talent[];
 
     constructor(private httpService: RandomUserHttpService) { }
 
@@ -21,7 +21,7 @@ export class TalentListComponent implements OnInit {
         this.httpService.getAllTalents().subscribe(
 
             (data: RandomUserAPI) => {
-                this.list = data;
+                this.list = data.results;
             }
 
         );

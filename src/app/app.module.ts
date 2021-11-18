@@ -8,12 +8,10 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
-import { TalentListComponent } from './talent/talent-list/talent-list.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        TalentListComponent
     ],
     imports: [
         AppRoutingModule,
