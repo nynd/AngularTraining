@@ -1,0 +1,10 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"
+      [ngStyle]="{'background-image':'url(' + talent?.picture?.thumbnail + ')'}">
+    </div>
+    <mat-card-title>{{talent?.name?.first + ' ' + talent?.name?.last}}</mat-card-title>
+    <mat-card-subtitle>{{talent?.nat}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="{{talent?.picture?.large}}" alt="{{talent?.name?.first + ' ' + talent?.name?.last}}">
+</mat-card>
