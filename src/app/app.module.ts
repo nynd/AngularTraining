@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -9,13 +10,13 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
-import { TalentCardComponent } from './talent/talent-card/talent-card.component';
-import { TalentListComponent } from './talent/talent-list/talent-list.component';
+import { LoginComponent } from './login/login.component';
+import { TalentModule } from './talent/talent.module';
+
 @NgModule({
     declarations: [
         AppComponent,
-        TalentListComponent,
-        TalentCardComponent,
+        LoginComponent,
     ],
     imports: [
         AppRoutingModule,
@@ -23,10 +24,13 @@ import { TalentListComponent } from './talent/talent-list/talent-list.component'
         BrowserAnimationsModule,
         LayoutModule,
         MatSidenavModule,
-        MatCardModule,
         RouterModule,
-        HttpClientModule,
         CommonModule,
+        TalentModule,
+        FormsModule,
+        MatInputModule,
+        MatButtonModule
+
     ],
     providers: [],
     bootstrap: [AppComponent]

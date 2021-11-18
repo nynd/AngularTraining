@@ -1,3 +1,4 @@
 <p>talent-list works!</p>
-
-<app-talent-card *ngFor="let talent of list" [talent]="talent"></app-talent-card>
+<p *ngFor="let talentData of list">
+  <app-talent-card [talent]="talentData"></app-talent-card>
+</p>
