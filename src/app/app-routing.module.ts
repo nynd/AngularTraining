@@ -1,7 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './layout/home/home.component';
+import { NotFoundComponent } from './layout/not-found/not-found.component';
+import { TalentListComponent } from './talent/talent-list/talent-list.component';
 
 const routes: Routes = [
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: 'home', component: HomeComponent },
+    { path: 'talents', component: TalentListComponent },
+    { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
