@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DebugElement } from '@angular/core';
+import { ComponentFixture, ComponentFixtureAutoDetect, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { AuthenticationHttpService } from '../authentication-http-service.service';
 
@@ -12,25 +13,23 @@ describe('LoginComponent', () => {
   let httpClientSpy: jasmine.SpyObj<HttpClient>;
   let service: AuthenticationHttpService;
 
-  beforeEach(() => {
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post']);
-    // TestBed.configureTestingModule({providers: [AuthenticationHttpService]});
-    service = new AuthenticationHttpService(httpClientSpy);
-  });
-  
+  let debugElement: DebugElement
+
 
   beforeEach(async () => {
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post']);
+    service = new AuthenticationHttpService(httpClientSpy);
+
     await TestBed.configureTestingModule({
       declarations: [ LoginComponent ],
       imports: [FormsModule],
-      providers: [{provide: AuthenticationHttpService, useValue: service }]
+      providers: [
+        {provide: AuthenticationHttpService, useValue: service }]
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
+    debugElement = fixture.debugElement;
     fixture.detectChanges();
   });
 
@@ -38,7 +37,35 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // it('should enable login button only when form is valid', () => {
-  //     // TODO
-  // });
+  it('should disable login button when form is invalid', () => {
+      const hostElement: HTMLElement = fixture.nativeElement;
+      const loginInput: HTMLInputElement = hostElement.querySelector('input[name="login"]')!;
+      loginInput.value="abc";
+      loginInput.dispatchEvent(new Event("input"))
+            
+      const passwordInput: HTMLInputElement = hostElement.querySelector('input[name="password"]')!;
+      passwordInput.value="pass";
+      passwordInput.dispatchEvent(new Event("input"))
+
+      fixture.detectChanges();
+
+      const compiled = fixture.nativeElement as HTMLElement;
+      expect(compiled.querySelector('button')?.disabled).toBeTrue();
+  });
+
+  it('should enable login button when form is valid', () => {
+    const hostElement: HTMLElement = fixture.nativeElement;
+    const loginInput: HTMLInputElement = hostElement.querySelector('input[name="login"]')!;
+    loginInput.value="abcd";
+    loginInput.dispatchEvent(new Event("input"))
+          
+    const passwordInput: HTMLInputElement = hostElement.querySelector('input[name="password"]')!;
+    passwordInput.value="pass";
+    passwordInput.dispatchEvent(new Event("input"))
+
+    fixture.detectChanges();
+
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('button')?.disabled).toBeFalse();
+  });
 });
