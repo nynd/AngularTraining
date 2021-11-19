@@ -1,16 +1,19 @@
+import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 
-import { AuthenticationHttpServiceService } from './authentication-http-service.service';
+import { AuthenticationHttpService } from './authentication-http-service.service';
 
 describe('AuthenticationHttpServiceService', () => {
-  let service: AuthenticationHttpServiceService;
+  let httpClientSpy: jasmine.SpyObj<HttpClient>;
+  let service: AuthenticationHttpService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(AuthenticationHttpServiceService);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post']);
+    // TestBed.configureTestingModule({providers: [AuthenticationHttpService]});
+    service = new AuthenticationHttpService(httpClientSpy);
   });
-
-  it('should be created', () => {
+  
+  it('should be created 2', () => {
     expect(service).toBeTruthy();
   });
 });
